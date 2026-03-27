@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { services } from "@/lib/services";
-import { Send, MapPin, Phone, Mail, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Service } from "@/types";
+import { Send, MapPin, Phone, Mail, CheckCircle, Loader2 } from "lucide-react";
 
 export default function ContactForm() {
+  const [servicesList, setServicesList] = useState<Service[]>([]);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,6 +17,14 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    // Fetch services dynamically for the dropdown
+    fetch("/api/services")
+      .then(res => res.json())
+      .then(data => setServicesList(data))
+      .catch(err => console.error("Failed to fetch services for form:", err));
+  }, []);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -29,7 +38,7 @@ export default function ContactForm() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
@@ -39,12 +48,24 @@ export default function ContactForm() {
     setErrors({});
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        window.scrollTo({ top: 300, behavior: 'smooth' });
+      } else {
+        setErrors({ general: "Submission failed. Please try again later." });
+      }
+    } catch (err) {
+      setErrors({ general: "An error occurred. Check your connection." });
+    } finally {
       setIsLoading(false);
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1500);
+    }
   };
 
   if (submitted) {
@@ -61,7 +82,10 @@ export default function ContactForm() {
           Thank you for reaching out to Cmakey Company Limited. One of our experts will review your inquiry and contact you within 24 hours.
         </p>
         <button 
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false);
+            setForm({ name: "", email: "", phone: "", subject: "", service: "", message: "" });
+          }}
           className="mt-10 text-brand-gold font-bold hover:underline"
         >
           Send another message
@@ -81,7 +105,7 @@ export default function ContactForm() {
         htmlFor={id}
         className="block text-sm font-medium text-gray-700 mb-1.5"
       >
-        {label} {id !== "phone" && id !== "service" && <span className="text-red-500">*</span>}
+        {label} {id !== "phone" && id !== "service" && id !== "subject" && <span className="text-red-500">*</span>}
       </label>
       <input
         id={id}
@@ -101,28 +125,18 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-lg space-y-5">
+      {errors.general && (
+        <div className="p-4 bg-red-50 border border-red-100 text-red-500 rounded-xl text-sm font-medium">
+          {errors.general}
+        </div>
+      )}
       <div className="grid sm:grid-cols-2 gap-5">
         {field("name", "Full Name", "text", "e.g. John Doe")}
         {field("email", "Email Address", "email", "you@example.com")}
       </div>
       <div className="grid sm:grid-cols-2 gap-5">
         {field("phone", "Phone Number", "tel", "+255 XXX XXX XXX")}
-        <div>
-          <label
-            htmlFor="subject"
-            className="block text-sm font-medium text-gray-700 mb-1.5"
-          >
-            Subject
-          </label>
-          <input
-            id="subject"
-            type="text"
-            value={form.subject}
-            onChange={(e) => setForm({ ...form, subject: e.target.value })}
-            placeholder="How can we help?"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-          />
-        </div>
+        {field("subject", "Subject", "text", "How can we help?")}
       </div>
       <div>
         <label
@@ -138,7 +152,7 @@ export default function ContactForm() {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/50 bg-white"
         >
           <option value="">Select a service...</option>
-          {services.map((s) => (
+          {servicesList.map((s) => (
             <option key={s.slug} value={s.slug}>
               {s.title}
             </option>
@@ -174,8 +188,8 @@ export default function ContactForm() {
       >
         {isLoading ? (
           <>
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            Sending...
+            <Loader2 className="animate-spin" size={20} />
+            Sending Message...
           </>
         ) : (
           <>

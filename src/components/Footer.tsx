@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, Phone } from "lucide-react";
-import { services } from "@/lib/services";
+import { getServices } from "@/lib/services";
 
-export default function Footer() {
+export default async function Footer() {
+  const services = await getServices();
   return (
     <footer className="bg-brand-navy-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
@@ -16,6 +17,7 @@ export default function Footer() {
                   src="/logo.png"
                   alt="Cmakey Company Limited"
                   fill
+                  sizes="288px"
                   className="object-contain brightness-0 invert"
                 />
               </div>

@@ -43,7 +43,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-18 py-2">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group -ml-1 mt-4">
-            <div className="relative h-12 w-12 group-hover:scale-110 transition-transform duration-300">
+            <div className="relative h-16 w-16 group-hover:scale-110 transition-transform duration-300">
               <Image
                 src="/logo.png"
                 alt="Cmakey Logo"
