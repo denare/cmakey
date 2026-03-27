@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Globe } from "lucide-react";
 
@@ -33,24 +34,29 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || !isHome
-          ? "bg-brand-navy shadow-lg shadow-black/20"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || !isHome
+        ? "bg-brand-navy shadow-lg shadow-black/20"
+        : "bg-transparent"
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 py-4">
+        <div className="flex items-center justify-between h-18 py-2">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center font-black text-brand-navy text-lg group-hover:scale-110 transition-transform">
-              C
+          <Link href="/" className="flex items-center gap-2 group -ml-1 mt-4">
+            <div className="relative h-12 w-12 group-hover:scale-110 transition-transform duration-300">
+              <Image
+                src="/logo.png"
+                alt="Cmakey Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
-            <div>
-              <span className="text-white font-bold text-lg leading-none block">
-                Cmakey
+            <div className="flex flex-col">
+              <span className="text-white font-black text-2xl tracking-tighter leading-none group-hover:text-brand-gold transition-colors">
+                CMAKEY
               </span>
-              <span className="text-brand-gold text-xs font-medium leading-none">
+              <span className="text-brand-gold text-[10px] font-bold uppercase tracking-[0.2em] mt-1">
                 Company Limited
               </span>
             </div>
@@ -62,12 +68,11 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  pathname === link.href ||
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${pathname === link.href ||
                   (link.href !== "/" && pathname.startsWith(link.href))
-                    ? "text-brand-gold bg-white/10"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                }`}
+                  ? "text-brand-gold bg-white/10"
+                  : "text-white/80 hover:text-white hover:bg-white/10"
+                  }`}
               >
                 {link.label}
               </Link>
@@ -99,12 +104,11 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block px-4 py-3 text-sm font-medium border-b border-white/5 transition-colors ${
-                  pathname === link.href ||
+                className={`block px-4 py-3 text-sm font-medium border-b border-white/5 transition-colors ${pathname === link.href ||
                   (link.href !== "/" && pathname.startsWith(link.href))
-                    ? "text-brand-gold"
-                    : "text-white/80 hover:text-white"
-                }`}
+                  ? "text-brand-gold"
+                  : "text-white/80 hover:text-white"
+                  }`}
               >
                 {link.label}
               </Link>

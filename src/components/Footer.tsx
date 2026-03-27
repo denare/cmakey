@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { services } from "@/lib/services";
 
@@ -10,16 +11,13 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center font-black text-brand-navy text-lg">
-                C
-              </div>
-              <div>
-                <span className="text-white font-bold text-lg leading-none block">
-                  Cmakey
-                </span>
-                <span className="text-brand-gold text-xs font-medium leading-none">
-                  Company Limited
-                </span>
+              <div className="relative h-20 w-72 scale-125 origin-left">
+                <Image
+                  src="/logo.png"
+                  alt="Cmakey Company Limited"
+                  fill
+                  className="object-contain brightness-0 invert"
+                />
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-5">
