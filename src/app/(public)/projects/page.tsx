@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProjects } from "@/lib/projects";
 import { ArrowRight, MapPin, Calendar, Briefcase } from "lucide-react";
+import ServiceReveal from "@/components/ServiceReveal";
 
 export const metadata: Metadata = {
   title: "Our Projects",
@@ -25,13 +26,13 @@ export default async function ProjectsPage() {
         />
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3 animate-fade-in-up">
+          <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
             Portfolio
           </p>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-6 animate-fade-in-up animation-delay-100">
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
             Our <span className="text-brand-gold">Projects</span>
           </h1>
-          <p className="text-white/70 text-xl max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          <p className="text-white/70 text-xl max-w-2xl mx-auto">
             Showcasing our commitment to quality and excellence across every sector we operate in.
           </p>
         </div>
@@ -42,53 +43,52 @@ export default async function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((p, i) => (
-              <div
-                key={p.id}
-                className={`group bg-gray-50 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 animate-fade-in-up animation-delay-${(i % 3 + 1) * 100}`}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 right-4 bg-brand-navy/90 backdrop-blur-md text-brand-gold text-xs font-bold px-3 py-1 rounded-full border border-white/10 uppercase tracking-wider">
-                    {p.category}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-1.5 text-brand-gold text-xs font-semibold mb-3">
-                    <Briefcase size={12} />
-                    <span>{p.client}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                    {p.description}
-                  </p>
-                  <div className="flex items-center justify-between pt-6 border-t border-gray-200 mt-auto">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-1 text-gray-400 text-xs">
-                        <MapPin size={10} />
-                        <span>{p.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-gray-400 text-xs">
-                        <Calendar size={10} />
-                        <span>{p.year}</span>
-                      </div>
+              <ServiceReveal key={p.id} index={i}>
+                <div className="group bg-gray-50 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 h-full flex flex-col">
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 right-4 bg-brand-navy/90 backdrop-blur-md text-brand-gold text-xs font-bold px-3 py-1 rounded-full border border-white/10 uppercase tracking-wider">
+                      {p.category}
                     </div>
-                    <Link
-                      href="/contact"
-                      className="w-10 h-10 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-navy hover:bg-brand-gold hover:border-brand-gold transition-all group/btn shadow-sm"
-                    >
-                      <ArrowRight size={18} className="group-hover/btn:translate-x-0.5 transition-transform" />
-                    </Link>
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-center gap-1.5 text-brand-gold text-xs font-semibold mb-3">
+                      <Briefcase size={12} />
+                      <span>{p.client}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors">
+                      {p.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
+                      {p.description}
+                    </p>
+                    <div className="flex items-center justify-between pt-6 border-t border-gray-200 mt-auto">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1 text-gray-400 text-xs">
+                          <MapPin size={10} />
+                          <span>{p.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-gray-400 text-xs">
+                          <Calendar size={10} />
+                          <span>{p.year}</span>
+                        </div>
+                      </div>
+                      <Link
+                        href="/contact"
+                        className="w-10 h-10 bg-white border border-gray-100 rounded-full flex items-center justify-center text-brand-navy hover:bg-brand-gold hover:border-brand-gold transition-all group/btn shadow-sm"
+                      >
+                        <ArrowRight size={18} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ServiceReveal>
             ))}
           </div>
         </div>

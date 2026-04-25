@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getServices } from "@/lib/services";
 import { ArrowRight } from "lucide-react";
+import ServiceReveal from "@/components/ServiceReveal";
 
 export const metadata: Metadata = {
   title: "Our Services",
@@ -42,58 +43,59 @@ export default async function ServicesPage() {
       {/* ── SERVICES LIST ─────────────────────────────── */}
       <section className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8">
+          <div className="space-y-12">
             {services.map((svc, i) => (
-              <div
-                key={svc.slug}
-                className={`grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow ${
-                  i % 2 !== 0 ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Image side — swap order for even/odd */}
+              <ServiceReveal key={svc.slug} index={i}>
                 <div
-                  className={`relative h-72 lg:h-80 ${
-                    i % 2 !== 0 ? "lg:order-2" : ""
+                  className={`grid lg:grid-cols-2 gap-10 items-center bg-white rounded-[2.5rem] overflow-hidden shadow-md hover:shadow-xl transition-shadow ${
+                    i % 2 !== 0 ? "lg:flex-row-reverse" : ""
                   }`}
                 >
-                  <Image
-                    src={svc.heroImage}
-                    alt={svc.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/40 to-transparent" />
-                  <div className="absolute top-6 left-6 text-5xl">{svc.icon}</div>
-                </div>
-                {/* Content side */}
-                <div className={`p-10 ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
-                  <h2 className="text-3xl font-black text-brand-navy mb-3">
-                    {svc.title}
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                    {svc.shortDescription}
-                  </p>
-                  <ul className="space-y-2 mb-8">
-                    {svc.features.slice(0, 3).map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-gray-600 text-sm">
-                        <span className="w-1.5 h-1.5 bg-brand-gold rounded-full shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/services/${svc.slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl hover:bg-brand-navy-dark transition-all group"
+                  {/* Image side — swap order for even/odd */}
+                  <div
+                    className={`relative h-80 lg:h-96 ${
+                      i % 2 !== 0 ? "lg:order-2" : ""
+                    }`}
                   >
-                    View Full Details{" "}
-                    <ArrowRight
-                      size={16}
-                      className="group-hover:translate-x-1 transition-transform"
+                    <Image
+                      src={svc.heroImage}
+                      alt={svc.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
                     />
-                  </Link>
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/40 to-transparent" />
+                    <div className="absolute top-6 left-6 text-5xl">{svc.icon}</div>
+                  </div>
+                  {/* Content side */}
+                  <div className={`p-10 lg:p-14 ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
+                    <h2 className="text-4xl font-black text-brand-navy mb-4">
+                      {svc.title}
+                    </h2>
+                    <p className="text-gray-600 leading-relaxed mb-8 text-lg">
+                      {svc.shortDescription}
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-3 mb-10">
+                      {svc.features.slice(0, 4).map((f) => (
+                        <li key={f} className="flex items-center gap-2 text-gray-600 text-sm">
+                          <span className="w-2 h-2 bg-brand-gold rounded-full shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={`/services/${svc.slug}`}
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-brand-navy text-white font-bold rounded-xl hover:bg-brand-navy-dark transition-all group"
+                    >
+                      Explore Service Details{" "}
+                      <ArrowRight
+                        size={18}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </ServiceReveal>
             ))}
           </div>
         </div>

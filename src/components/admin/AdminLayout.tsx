@@ -32,20 +32,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
 
-  // Simple auth check
+  const isLoginPage = pathname === "/admin" || pathname === "/admin/";
+
   useEffect(() => {
     const session = document.cookie.includes("admin_session=active");
-    if (!session && pathname !== "/admin") {
+    if (!session && !isLoginPage) {
       router.push("/admin");
     }
-  }, [pathname, router]);
+  }, [pathname, router, isLoginPage]);
 
   const handleLogout = () => {
     document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     router.push("/admin");
   };
 
-  if (pathname === "/admin") return <>{children}</>;
+  if (isLoginPage) return <>{children}</>;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex transition-colors duration-300">
