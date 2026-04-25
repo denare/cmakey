@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Globe } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -86,23 +85,15 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Theme toggle + mobile toggle */}
-          <div className="flex items-center gap-2">
-            <div className="hidden sm:block">
-              <ThemeToggle />
-            </div>
-            <div className="md:hidden flex items-center gap-2">
-              <div className="sm:hidden">
-                <ThemeToggle />
-              </div>
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-                aria-label="Toggle menu"
-              >
-                {isOpen ? <X size={22} /> : <Menu size={22} />}
-              </button>
-            </div>
+          {/* mobile toggle */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
 

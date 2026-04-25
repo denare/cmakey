@@ -16,7 +16,6 @@ import {
   User,
   Users
 } from "lucide-react";
-import { ThemeToggle } from "../ThemeToggle";
 
 const navItems = [
   { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
@@ -49,7 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (isLoginPage) return <>{children}</>;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex">
       {/* Mobile Sidebar Toggle */}
       <button
         className="lg:hidden fixed bottom-6 right-6 z-50 p-4 bg-brand-navy text-white rounded-full shadow-2xl"
@@ -72,17 +71,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}>
         <div className="h-full flex flex-col p-6">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center text-brand-navy">
-                <Globe size={24} />
-              </div>
-              <div>
-                <h1 className="font-black text-xl tracking-tighter text-white">CMAKEY</h1>
-                <p className="text-[10px] text-brand-gold font-bold uppercase tracking-wider">Admin Panel</p>
-              </div>
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center text-brand-navy">
+              <Globe size={24} />
             </div>
-            <ThemeToggle />
+            <div>
+              <h1 className="font-black text-xl tracking-tighter text-white">CMAKEY</h1>
+              <p className="text-[10px] text-brand-gold font-bold uppercase tracking-wider">Admin Panel</p>
+            </div>
           </div>
 
           <nav className="flex-1 space-y-2">
