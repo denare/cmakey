@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, ArrowRight, Globe } from "lucide-react";
+import { Lock, ArrowRight, Globe, User } from "lucide-react";
 
 export default function LoginPage() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +20,7 @@ export default function LoginPage() {
       const res = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username, password }),
       });
 
       if (res.ok) {
@@ -46,6 +47,23 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleLogin} className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
+          <div className="mb-4">
+            <label className="block text-white/60 text-sm font-bold mb-2 uppercase tracking-tight">Admin Username</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40">
+                <User size={18} />
+              </div>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Admin"
+                className="w-full bg-white/10 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-brand-gold/50 focus:border-brand-gold/50 transition-all"
+                required
+              />
+            </div>
+          </div>
+
           <div className="mb-6">
             <label className="block text-white/60 text-sm font-bold mb-2 uppercase tracking-tight">Admin Password</label>
             <div className="relative">
