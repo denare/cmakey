@@ -166,6 +166,13 @@
   "messages": [],
   "activities": [
     {
+      "id": "1777104371745",
+      "type": "auth",
+      "action": "Admin Login",
+      "timestamp": "2026-04-25T08:06:11.747Z",
+      "details": "Successful login to the admin panel."
+    },
+    {
       "id": "1774633719818",
       "type": "auth",
       "action": "Admin Login",
