@@ -166,6 +166,20 @@
   "messages": [],
   "activities": [
     {
+      "id": "1777106997075",
+      "type": "auth",
+      "action": "Admin Login",
+      "timestamp": "2026-04-25T08:49:57.075Z",
+      "details": "Successful login for user: Admin"
+    },
+    {
+      "id": "1777106982130",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-04-25T08:49:42.130Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
       "id": "1777104371745",
       "type": "auth",
       "action": "Admin Login",

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Target, Eye, Heart, Users } from "lucide-react";
 import { getTeamMembers } from "@/lib/db";
+import TeamCard from "@/components/TeamCard";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -220,21 +221,7 @@ export default async function AboutPage() {
           {team.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {team.map((m, i) => (
-                <div key={m.id} className={`group bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:border-brand-gold transition-all duration-500 animate-fade-in-up animation-delay-${(i + 1) * 100}`}>
-                  <div className="relative h-72 overflow-hidden bg-gray-100 flex items-center justify-center">
-                    {m.image ? (
-                      <Image src={m.image} alt={m.name} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                    ) : (
-                      <Users size={64} className="text-gray-300" />
-                    )}
-                    <div className="absolute inset-0 bg-brand-navy/20 group-hover:bg-transparent transition-colors duration-300" />
-                  </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-brand-navy mb-1">{m.name}</h3>
-                    <p className="text-brand-gold font-medium text-sm">{m.role}</p>
-                    {m.bio && <p className="text-gray-500 text-xs mt-2 line-clamp-2">{m.bio}</p>}
-                  </div>
-                </div>
+                <TeamCard key={m.id} member={m} index={i} />
               ))}
             </div>
           ) : (

@@ -12,6 +12,7 @@ import {
   Eye,
   Star,
 } from "lucide-react";
+import HomeHero from "@/components/HomeHero";
 
 export const metadata: Metadata = {
   title: "Cmakey Company Limited – Unlock The World",
@@ -33,57 +34,7 @@ export default async function HomePage() {
   const projects = await getFeaturedProjects();
   return (
     <>
-      {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80"
-          alt="Dar es Salaam skyline"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/75 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-brand-gold/20 border border-brand-gold/40 text-brand-gold px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-fade-in-up">
-              <Star size={14} fill="currentColor" />
-              Dar es Salaam, Tanzania
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fade-in-up animation-delay-100">
-              Unlock <span className="gradient-text">The World</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed mb-10 animate-fade-in-up animation-delay-200">
-              Cmakey Company Limited is your trusted multi-sector partner in
-              Tanzania — delivering excellence in Construction, Logistics,
-              Hospitality, and beyond.
-            </p>
-            <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-300">
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-brand-gold text-brand-navy font-bold rounded-xl hover:bg-brand-gold-light transition-all shadow-xl shadow-brand-gold/30 hover:shadow-brand-gold/50 hover:scale-105"
-              >
-                Explore Services <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/20 transition-all backdrop-blur-sm"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-white/60 rounded-full" />
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       {/* ── ABOUT SNIPPET ────────────────────────────────────── */}
       <section className="section-padding bg-white">
