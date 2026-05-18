@@ -7,17 +7,20 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Globe } from "lucide-react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", labelKey: "navHome" as const },
+  { href: "/about", labelKey: "navAbout" as const },
+  { href: "/services", labelKey: "navServices" as const },
+  { href: "/projects", labelKey: "navProjects" as const },
+  { href: "/contact", labelKey: "navContact" as const },
 ];
+
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -35,7 +38,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || !isHome
-        ? "bg-brand-navy shadow-lg shadow-black/20"
+        ? "bg-brand-navy/90 backdrop-blur-md shadow-lg shadow-black/20"
         : "bg-transparent"
         }`}
     >
@@ -74,14 +77,25 @@ export default function Header() {
                   : "text-white/80 hover:text-white hover:bg-white/10"
                   }`}
               >
-                {link.label}
+                {t(link.labelKey)}
               </Link>
             ))}
+            
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="ml-2 p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider cursor-pointer border-0"
+              title={language === "en" ? "Badili kwenda Kiswahili" : "Switch to English"}
+            >
+              <Globe size={15} className="text-brand-gold" />
+              <span>{language === "en" ? "SW" : "EN"}</span>
+            </button>
+
             <Link
               href="/contact"
               className="ml-4 px-5 py-2.5 bg-brand-gold text-brand-navy font-semibold rounded-lg text-sm hover:bg-brand-gold-light transition-all duration-200 hover:shadow-lg hover:shadow-brand-gold/30"
             >
-              Get In Touch
+              {t("getInTouch")}
             </Link>
           </div>
 
@@ -110,15 +124,28 @@ export default function Header() {
                   : "text-white/80 hover:text-white"
                   }`}
               >
-                {link.label}
+                {t(link.labelKey)}
               </Link>
             ))}
+            
+            {/* Mobile Language Switcher */}
+            <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between">
+              <span className="text-white/60 text-sm font-medium">Language / Lugha:</span>
+              <button
+                onClick={toggleLanguage}
+                className="px-3 py-1.5 bg-white/10 rounded-lg text-brand-gold hover:text-white hover:bg-white/20 transition-all flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider"
+              >
+                <Globe size={14} />
+                <span>{language === "en" ? "Kiswahili (SW)" : "English (EN)"}</span>
+              </button>
+            </div>
+
             <div className="px-4 pt-3">
               <Link
                 href="/contact"
                 className="block w-full text-center px-5 py-3 bg-brand-gold text-brand-navy font-semibold rounded-lg text-sm"
               >
-                Get In Touch
+                {t("getInTouch")}
               </Link>
             </div>
           </div>
