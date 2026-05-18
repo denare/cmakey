@@ -106,7 +106,7 @@
       "location": "Dar es Salaam",
       "year": "2024",
       "description": "Major structural enhancement and road expansion to improve traffic flow in the southern corridor of Dar es Salaam.",
-      "image": "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?w=800&q=80",
+      "image": "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?w=800&q=80",
       "featured": true
     },
     {
@@ -163,8 +163,146 @@
       "featured": true
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "name": "Mussa Juma",
+      "email": "mussa.juma@gmail.com",
+      "phone": "+255 754 123 456",
+      "subject": "Inquiry about Kilwa Road Expansion project",
+      "service": "construction",
+      "message": "Hello Cmakey team! I would like to inquire about the timeline and subcontracting opportunities for the Kilwa Road Expansion project in Dar es Salaam. Please get in touch with me as soon as possible.",
+      "id": "1779121589991",
+      "createdAt": "2026-05-18T16:26:29.991Z",
+      "read": true
+    }
+  ],
   "activities": [
+    {
+      "id": "1779121590020",
+      "type": "message",
+      "action": "New Contact Inquiry",
+      "timestamp": "2026-05-18T16:26:30.020Z",
+      "details": "Received new message from Mussa Juma (mussa.juma@gmail.com) regarding construction."
+    },
+    {
+      "id": "1779121244996",
+      "type": "auth",
+      "action": "Admin Login",
+      "timestamp": "2026-05-18T16:20:44.996Z",
+      "details": "Successful login for user: Admin"
+    },
+    {
+      "id": "1779121147013",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:19:07.013Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779121115955",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:18:35.955Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779121091030",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:18:11.030Z",
+      "details": "Unsuccessful login attempt for user: cmakey"
+    },
+    {
+      "id": "1779121066969",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:17:46.969Z",
+      "details": "Unsuccessful login attempt for user: admin@cmakey.com"
+    },
+    {
+      "id": "1779121046326",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:17:26.326Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779121035080",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:17:15.080Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779121010001",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:16:50.001Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120986089",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:16:26.089Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120959084",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:15:59.084Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120915031",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:15:15.031Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120836113",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:13:56.114Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120803643",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:13:23.643Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120772354",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:12:52.354Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1779120706276",
+      "type": "auth",
+      "action": "Failed Login Attempt",
+      "timestamp": "2026-05-18T16:11:46.277Z",
+      "details": "Unsuccessful login attempt for user: admin"
+    },
+    {
+      "id": "1778961405667",
+      "type": "auth",
+      "action": "Admin Login",
+      "timestamp": "2026-05-16T19:56:45.667Z",
+      "details": "Successful login for user: Admin"
+    },
+    {
+      "id": "1778957056431",
+      "type": "auth",
+      "action": "Admin Login",
+      "timestamp": "2026-05-16T18:44:16.432Z",
+      "details": "Successful login for user: Admin"
+    },
     {
       "id": "1777106997075",
       "type": "auth",

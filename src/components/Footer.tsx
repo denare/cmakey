@@ -1,10 +1,39 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, Phone } from "lucide-react";
-import { getServices } from "@/lib/services";
+import { useLanguage } from "@/lib/LanguageContext";
 
-export default async function Footer() {
-  const services = await getServices();
+interface ServiceItem {
+  slug: string;
+  title: string;
+}
+
+export default function Footer() {
+  const { t, language } = useLanguage();
+  const [services, setServices] = useState<ServiceItem[]>([]);
+
+  useEffect(() => {
+    fetch("/api/services")
+      .then((res) => res.json())
+      .then((data) => setServices(data || []))
+      .catch((err) => console.error("Failed to load services in footer:", err));
+  }, []);
+
+  const translateService = (slug: string, defaultTitle: string) => {
+    switch (slug) {
+      case "construction": return t("filterConstruction");
+      case "logistics": return t("filterLogistics");
+      case "hospitality": return t("filterHospitality");
+      case "entertainment": return t("filterEntertainment");
+      case "clearing": return t("filterClearing");
+      case "supply": return t("filterSupply");
+      default: return defaultTitle;
+    }
+  };
+
   return (
     <footer className="bg-brand-navy-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
@@ -23,11 +52,12 @@ export default async function Footer() {
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-5">
-              Your multi-sector partner for growth across Tanzania and East
-              Africa. We unlock opportunities in every industry we serve.
+              {language === "en" 
+                ? "Your multi-sector partner for growth across Tanzania and East Africa. We unlock opportunities in every industry we serve."
+                : "Mshirika wako wa sekta mbalimbali kwa ukuaji kote nchini Tanzania na Afrika Mashariki. Tunafungua fursa katika kila sekta tunayohudumia."}
             </p>
             <p className="text-brand-gold font-semibold italic">
-              "Unlock The World"
+              "{t("mottoTitle")}"
             </p>
             {/* Social icons */}
             <div className="flex gap-3 mt-5">
@@ -76,32 +106,39 @@ export default async function Footer() {
           {/* Quick links */}
           <div>
             <h3 className="font-semibold text-brand-gold mb-4 text-sm uppercase tracking-wider">
-              Quick Links
+              {t("quickLinks")}
             </h3>
             <ul className="space-y-2">
               {[
-                { href: "/", label: "Home" },
-                { href: "/about", label: "About Us" },
-                { href: "/services", label: "Our Services" },
-                { href: "/contact", label: "Contact Us" },
-                { href: "/privacy", label: "Privacy Policy" },
+                { href: "/", labelKey: "navHome" as const },
+                { href: "/about", labelKey: "navAbout" as const },
+                { href: "/services", labelKey: "navServices" as const },
+                { href: "/contact", labelKey: "navContact" as const },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-white/60 hover:text-brand-gold text-sm transition-colors"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-white/60 hover:text-brand-gold text-sm transition-colors"
+                >
+                  {language === "en" ? "Privacy Policy" : "Sera ya Faragha"}
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
             <h3 className="font-semibold text-brand-gold mb-4 text-sm uppercase tracking-wider">
-              Our Services
+              {t("navServices")}
             </h3>
             <ul className="space-y-2">
               {services.map((svc) => (
@@ -110,7 +147,7 @@ export default async function Footer() {
                     href={`/services/${svc.slug}`}
                     className="text-white/60 hover:text-brand-gold text-sm transition-colors"
                   >
-                    {svc.title}
+                    {translateService(svc.slug, svc.title)}
                   </Link>
                 </li>
               ))}
@@ -120,14 +157,16 @@ export default async function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-semibold text-brand-gold mb-4 text-sm uppercase tracking-wider">
-              Contact Us
+              {t("contactTitle")}
             </h3>
             <ul className="space-y-4">
               <li className="flex gap-3 items-start">
                 <MapPin size={16} className="text-brand-gold mt-1 shrink-0" />
-                <span className="text-white/60 text-sm">
-                  P.O. Box 70307, Dar es Salaam, Tanzania
-                </span>
+                <div className="flex flex-col text-sm text-white/60 leading-relaxed">
+                  <span className="font-semibold text-white/80">{t("officeLabel")}</span>
+                  <span>{t("officeAddress")}</span>
+                  <span className="text-xs text-white/40 mt-0.5">{t("poBox")}</span>
+                </div>
               </li>
               <li className="flex gap-3 items-center">
                 <Phone size={16} className="text-brand-gold shrink-0" />
@@ -162,10 +201,10 @@ export default async function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-sm">
-            © 2026 Cmakey Company Limited. All rights reserved.
+            {t("allRightsReserved")}
           </p>
           <p className="text-white/30 text-xs">
-            Built with excellence in Tanzania.
+            {t("builtInTanzania")}
           </p>
         </div>
       </div>

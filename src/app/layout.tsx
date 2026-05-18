@@ -38,6 +38,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from "@/lib/LanguageContext";
+
 export default function RootLayout({
   children,
 }: {
@@ -46,7 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={outfit.variable}>
       <body className="font-sans antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
