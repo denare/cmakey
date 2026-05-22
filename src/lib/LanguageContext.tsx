@@ -74,7 +74,7 @@ export const translations = {
     // Footer Address details
     quickLinks: "Quick Links",
     contactTitle: "Contact Us",
-    officeLabel: "Victoria Office:",
+    officeLabel: "Dar-es-Salaam, Tanzania",
     officeAddress:
       "4th Floor, Tanzanite Park, New Bagamoyo Road, Dar es Salaam",
     poBox: "P.O. Box 70307, Tanzania",
@@ -159,7 +159,7 @@ export const translations = {
     // Footer Address details
     quickLinks: "Viungo vya Haraka",
     contactTitle: "Wasiliana Nasi",
-    officeLabel: "Ofisi ya Victoria:",
+    officeLabel: "Dar-es-Salaam, Tanzania",
     officeAddress:
       "Ghorofa ya 4, Tanzanite Park, Barabara ya New Bagamoyo, Dar es Salaam",
     poBox: "S.L.P 70307, Tanzania",
