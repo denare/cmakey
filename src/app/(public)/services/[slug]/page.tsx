@@ -124,11 +124,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                     +255 714 562 710
                   </a>
                   <a
-                    href="mailto:cmakeycompanylimited@gmail.com"
+                    href="mailto:info@cmakey.com"
                     className="flex items-center gap-3 text-white/70 hover:text-white text-sm transition-colors break-all"
                   >
                     <Mail size={16} className="text-brand-gold shrink-0" />
-                    cmakeycompanylimited@gmail.com
+                    info@cmakey.com
                   </a>
                 </div>
               </div>

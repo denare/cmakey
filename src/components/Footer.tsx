@@ -188,10 +188,10 @@ export default function Footer() {
               <li className="flex gap-3 items-center">
                 <Mail size={16} className="text-brand-gold shrink-0" />
                 <a
-                  href="mailto:cmakeycompanylimited@gmail.com"
+                  href="mailto:info@cmakey.com"
                   className="text-white/60 hover:text-brand-gold text-sm transition-colors break-all"
                 >
-                  cmakeycompanylimited@gmail.com
+                  info@cmakey.com
                 </a>
               </li>
             </ul>
