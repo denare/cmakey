@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       await transporter.sendMail({
         from: `"${name}" <${process.env.EMAIL_USER}>`,
-        to: "cmakeycompanylimited@gmail.com",
+        to: "info@cmakey.com",
         replyTo: email,
         subject: `[Website Inquiry] ${subject || "New Message"}`,
         text: `

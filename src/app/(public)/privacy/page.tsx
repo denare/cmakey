@@ -50,7 +50,7 @@ export default function PrivacyPage() {
       • Request correction of inaccurate data
       • Request deletion of your personal data
       • Withdraw consent for marketing communications at any time
-      To exercise any of these rights, please contact us at cmakeycompanylimited@gmail.com.`,
+      To exercise any of these rights, please contact us at info@cmakey.com.`,
     },
     {
       title: "7. Data Retention",
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
 
       Cmakey Company Limited
       P.O. Box 70307, Dar es Salaam, Tanzania
-      Email: cmakeycompanylimited@gmail.com
+      Email: info@cmakey.com
       Phone: +255 658 173 232 / +255 714 562 710`,
     },
   ];

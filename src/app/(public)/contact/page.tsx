@@ -24,8 +24,8 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email Us",
-    lines: ["cmakeycompanylimited@gmail.com"],
-    hrefs: ["mailto:cmakeycompanylimited@gmail.com"],
+    lines: ["info@cmakey.com"],
+    hrefs: ["mailto:info@cmakey.com"],
   },
   {
     icon: Clock,

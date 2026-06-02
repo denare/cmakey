@@ -369,11 +369,11 @@ export default function HomeClientPage({ initialServices, initialProjects }: Hom
                   +255 658 173 232
                 </a>
                 <a
-                  href="mailto:cmakeycompanylimited@gmail.com"
+                  href="mailto:info@cmakey.com"
                   className="flex items-center gap-3 bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl hover:bg-white/20 transition-all"
                 >
                   <Mail size={18} className="text-brand-gold" />
-                  cmakeycompanylimited@gmail.com
+                  info@cmakey.com
                 </a>
               </div>
               <Link
