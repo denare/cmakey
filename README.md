@@ -206,6 +206,7 @@ This project is proprietary software. All rights reserved.
 For inquiries or support regarding this project, please contact:
 - **Company**: CMAKEY
 - **Email**: cmakeycompanylimited@gmail.com
+- **Email**: support@cmakey.com
 
 ## Changelog
 
