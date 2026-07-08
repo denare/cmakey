@@ -218,4 +218,4 @@ For inquiries or support regarding this project, please contact:
 
 ---
 
-**Built with ❤️ using Next.js, TypeScript, Tailwind CSS, and Framer Motion and Denis D**
+**Built with ❤️ using Next.js, TypeScript, Tailwind CSS, and Framer Motion, with Denis D as the developer**
